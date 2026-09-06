@@ -2,7 +2,7 @@
 from __future__ import annotations
 import json, uuid
 from imperal_sdk import ActionResult
-from threesixty_learning_client import 360LearningClient
+from threesixty_learning_client import ThreeSixtyLearningClient
 from app import chat
 from schemas import (
     NoParams,

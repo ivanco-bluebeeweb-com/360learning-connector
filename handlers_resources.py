@@ -3,7 +3,7 @@ from __future__ import annotations
 from app import chat
 import datetime
 from imperal_sdk import ActionResult
-from threesixty_learning_client import 360LearningClient
+from threesixty_learning_client import ThreeSixtyLearningClient
 from handlers_connection import resolve_connection
 from schemas import *
 
@@ -11,7 +11,7 @@ async def _get_client(ctx, cid: str = ""):
     conn = await resolve_connection(ctx, cid)
     if not conn:
         return None, ActionResult.error("No active 360Learning connection", code="UNAUTHORIZED")
-    return 360LearningClient(api_key=conn["api_key"], base_url=conn.get("base_url", "")), None
+    return ThreeSixtyLearningClient(api_key=conn["api_key"], base_url=conn.get("base_url", "")), None
 
 @chat.function(
     "list_subscribers",
