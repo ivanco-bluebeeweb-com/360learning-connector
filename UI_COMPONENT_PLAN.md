@@ -1,3 +1,8 @@
-# 360Learning Connector - UI_COMPONENT_PLAN.md
+# 360Learning Connector — UI Component Plan
 
-Standard documentation for 360Learning Connector in Imperal Cloud.
+**Compliance:** UI_INTERFACE_STANDARD.md
+
+## Интерфейс
+- **Левый сайдбар:** Форма подключения на всю ширину контейнера, все инпуты с лейблами и контекстными плейсхолдерами.
+- **Центральная зона:** Карточки статуса подключения, таблица сущностей (курсы programs (/programs)), журнал операций.
+- **Модальные окна:** Предупреждения и подтверждения для любых деструктивных или модифицирующих действий.
