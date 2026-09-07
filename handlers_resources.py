@@ -10,7 +10,7 @@ from schemas import (
 from handlers_connection import resolve_client
 
 @chat.function("list_courses", "List courses in 360Learning.", action_type="read", chain_callable=True, event="360learning-connector.list_courses", effects=["read:courses"], data_model=CourseList)
-async def list_courses(params: ListCourseParams, ctx) -> ActionResult:
+async def list_courses(ctx, params: ListCourseParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         raw_items = await client.list_courses(limit=params.limit)
@@ -24,7 +24,7 @@ async def list_courses(params: ListCourseParams, ctx) -> ActionResult:
         return ActionResult.error(f"Error listing courses: {e}")
 
 @chat.function("get_course", "Get details of one Course in 360Learning.", action_type="read", chain_callable=True, event="360learning-connector.get_course", effects=["read:course"], data_model=CourseRecord)
-async def get_course(params: GetCourseParams, ctx) -> ActionResult:
+async def get_course(ctx, params: GetCourseParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         r = await client.get_course(params.course_id)
@@ -35,7 +35,7 @@ async def get_course(params: GetCourseParams, ctx) -> ActionResult:
         return ActionResult.error(f"Error retrieving Course: {e}")
 
 @chat.function("audit_course_health", "Audit health of 360Learning courses and connectivity.", action_type="read", chain_callable=True, event="360learning-connector.audit_course_health", effects=["read:audit"], data_model=AuditHealthReport)
-async def audit_course_health(params: ConnectionIdParams, ctx) -> ActionResult:
+async def audit_course_health(ctx, params: ConnectionIdParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         items = await client.list_courses(limit=50)
